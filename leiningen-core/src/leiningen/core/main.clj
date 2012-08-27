@@ -18,6 +18,8 @@
               "tutorial" ["help" "tutorial"]
               "sample" ["help" "sample"]})
 
+(def trampoline-file (atom nil))
+
 (defn lookup-alias [task-name project]
   (or (aliases task-name)
       (get (:aliases project) task-name)
@@ -204,8 +206,9 @@ or by executing \"lein upgrade\". ")
 
 (defn -main
   "Run a task or comma-separated list of tasks."
-  [& raw-args]
+  [trampoline & raw-args]
   (try
+    (reset! trampoline-file trampoline)
     (user/init)
     (let [project (if (.exists (io/file "project.clj"))
                     (project/init-project (project/read)))

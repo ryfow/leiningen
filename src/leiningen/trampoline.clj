@@ -10,7 +10,7 @@
 (def ^:dynamic *trampoline?* false)
 
 (defn- win-batch? []
-  (.endsWith (System/getProperty "leiningen.trampoline-file") ".bat"))
+  (.endsWith @main/trampoline-file ".bat"))
 
 (defn- quote-arg [arg]
   (format "\"%s\"" arg))
@@ -33,7 +33,7 @@
 
 (defn write-trampoline [project forms deps]
   (let [command (trampoline-command-string project forms deps)
-        trampoline-file (System/getProperty "leiningen.trampoline-file")]
+        trampoline-file @main/trampoline-file]
     (main/debug "Trampoline command:" command)
     (.mkdirs (.getParentFile (io/file trampoline-file)))
     (spit trampoline-file command)))

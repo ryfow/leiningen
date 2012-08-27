@@ -262,9 +262,8 @@ else
             -Dfile.encoding=UTF-8 \
             -Dmaven.wagon.http.ssl.easy=false \
             -Dleiningen.original.pwd="$ORIGINAL_PWD" \
-            -Dleiningen.trampoline-file="$TRAMPOLINE_FILE" \
             -cp "$CLASSPATH" \
-            clojure.main -m leiningen.core.main "$@"
+            clojure.main -m leiningen.core.main "$TRAMPOLINE_FILE" "$@"
 
         EXIT_CODE=$?
 
