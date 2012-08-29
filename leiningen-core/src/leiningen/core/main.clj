@@ -206,9 +206,9 @@ or by executing \"lein upgrade\". ")
 
 (defn -main
   "Run a task or comma-separated list of tasks."
-  [trampoline & raw-args]
+  [& raw-args]
   (try
-    (reset! trampoline-file trampoline)
+    (reset! trampoline-file (System/getenv "TRAMPOLINE_FILE"))
     (user/init)
     (let [project (if (.exists (io/file "project.clj"))
                     (project/init-project (project/read)))

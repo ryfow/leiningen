@@ -267,7 +267,7 @@ else
             -Dmaven.wagon.http.ssl.easy=false \
             -Dleiningen.original.pwd="$ORIGINAL_PWD" \
             -cp "$CLASSPATH" \
-            clojure.main -m leiningen.core.main "$TRAMPOLINE_FILE" "$@"
+            clojure.main -m leiningen.core.main "$@"
 
         EXIT_CODE=$?
 
